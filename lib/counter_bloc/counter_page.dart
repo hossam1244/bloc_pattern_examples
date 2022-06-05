@@ -10,6 +10,7 @@ class CounterPage extends StatelessWidget {
    *  <the bloc i'm dealing with, the incoming states>
    *
    */
+
   @override
   Widget build(BuildContext context) {
     final counterBloc = BlocProvider.of<CounterBloc>(context);
