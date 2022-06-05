@@ -9,6 +9,10 @@ class CounterPage extends StatelessWidget {
    *  Bloc Builder handles building a widget in resposne to bloc states
    *  <the bloc i'm dealing with, the incoming states>
    *
+   *
+   *  Bloc listener handles doing stuff in response to state changes, it's better to use
+   *  bloc listener for things u wanna do only once like Toast, snackBar, dialogs
+   *
    */
 
   @override
@@ -18,10 +22,28 @@ class CounterPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Counter'),
       ),
-      body: Center(
-        child: BlocBuilder<CounterBloc, int>(builder: (context, state) {
-          return Text('you have pushed the button $state times');
-        }),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: BlocBuilder<CounterBloc, int>(builder: (context, state) {
+              return Text('you have pushed the button $state times');
+            }),
+          ),
+          BlocListener<CounterBloc, int>(
+            listener: (context, state) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentMaterialBanner()
+                ..showSnackBar(
+                  const SnackBar(
+                    backgroundColor: Colors.green,
+                    content: Text('Success'),
+                  ),
+                );
+            },
+            child: Container(),
+          )
+        ],
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
