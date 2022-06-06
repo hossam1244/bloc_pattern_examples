@@ -1,11 +1,13 @@
 import 'package:bloc_pattern/counter_bloc/refactor_counter_page.dart';
 import 'package:bloc_pattern/counter_bloc_cubit/counter_cubit.dart';
+import 'package:bloc_pattern/home_page/home_page_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'counter_bloc/counter_bloc.dart';
 import 'counter_bloc/counter_page.dart';
 import 'counter_bloc_cubit/counter_view.dart';
+import 'home_page/home_page_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,8 +31,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (_) => CounterCubit(),
-        child: const CounterView(),
+        create: (_) => HomePageBloc(),
+        child: const HomePageView(),
       ),
     );
   }
