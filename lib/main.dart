@@ -7,6 +7,8 @@ import 'package:bloc_pattern/shopping_cart_bloc/repository/shopping_repository.d
 import 'package:bloc_pattern/shopping_cart_bloc/view/catalog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cart/bloc/cart_bloc.dart';
+import 'cart/view/cart_page.dart';
 import 'counter_bloc/counter_bloc.dart';
 import 'counter_bloc/counter_page.dart';
 import 'counter_bloc_cubit/counter_view.dart';
@@ -37,6 +39,11 @@ class MyApp extends StatelessWidget {
             shoppingRepository: shoppingRepository,
           )..add(CatalogStarted()),
         ),
+        BlocProvider(
+          create: (_) => CartBloc(
+            shoppingRepository: shoppingRepository,
+          )..add(CartStarted()),
+        )
       ],
       child: MaterialApp(
         title: 'Bloc Pattern',
@@ -46,6 +53,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (_) => CatalogPage(),
+          '/cart': (_) => CartPage(),
         },
       ),
     );
